@@ -1,0 +1,6 @@
+page.insert_html :bottom, :item, :partial => @feed
+if @feed_items.total_pages > @feed_items.current_page
+  page.call 'checkScroll'
+else
+  page[:loading].hide
+end

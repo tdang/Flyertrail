@@ -1,0 +1,16 @@
+<tr>
+  <td class="promotion">
+    <span class="content"><%= promotion.content %></span>
+    <span class="timestamp">
+      Posted <%= time_ago_in_words(promotion.created_at) %> ago.
+    </span>
+  </td>
+  <% user = promotion.user rescue User.find(promotion.user_id) %>
+  <% if current_user?(user) %>
+    <td>
+      <%= link_to "delete", promotion, :method => :delete,
+                                       :confirm => "You sure?",
+                                       :title => promotion.content %>
+    </td>
+  <% end %>
+</tr>

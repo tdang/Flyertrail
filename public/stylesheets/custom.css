@@ -1,0 +1,119 @@
+body {
+    background-image: url("/assets/img/hn-bg.png");
+    padding-top: 60px;
+}
+#container{
+	width:1500px;
+}
+.news {
+	background-color: #FFFFFF;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	font-size: 11px;
+	padding: 15px 15px 0;
+	position: relative;
+}
+.news h1 {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 5px;
+}
+.news div.author {
+    font-style: italic;
+}
+.news-column1{
+	width: 220px;
+	margin: 10px;
+    float: right;
+}
+
+.item {
+  width: 220px;
+  margin: 10px;
+  float: left;
+}
+
+.logo {
+	display: inline-block;
+	margin: 0 auto;
+}
+
+/* Navigation */
+
+.clear {clear:both} 
+/* remove the list style */
+#nav {
+	display: inline-block;
+    margin: auto; 
+    padding:0; 
+    list-style:none;
+	float: right;
+}   
+     
+    /* make the LI display inline */
+    /* it's position relative so that position absolute */
+    /* can be used in submenu */
+    #nav li {
+        float:left; 
+        display:block; 
+        width:100px; 
+        background:#ccc; 
+        position:relative;
+        z-index:500; 
+        margin:0 1px;
+    }
+         
+    /* this is the parent menu */
+    #nav li a {
+        display:block; 
+        padding:8px 5px 0 5px; 
+        font-weight:700;  
+        height:23px; 
+        text-decoration:none; 
+        color:#fff; 
+        text-align:center; 
+        color:#333;
+    }
+ 
+    #nav li a:hover {
+        color:#fff;
+    }
+     
+    /* you can make a different style for default selected value */
+    #nav a.selected {
+        color:#f00;
+    }
+     
+        /* submenu, it's hidden by default */
+        #nav ul {
+            position:absolute; 
+            left:0; 
+            display:none; 
+            margin:0 0 0 -1px; 
+            padding:0; 
+            list-style:none;
+        }
+         
+        #nav ul li {
+            width:100px; 
+            float:left; 
+            border-top:1px solid #fff;
+        }
+         
+        /* display block will make the link fill the whole area of LI */
+        #nav ul a {
+            display:block;  
+            height:15px;
+            padding: 8px 5px; 
+            color:#666;
+        }
+         
+        #nav ul a:hover {
+            text-decoration:underline;  
+        }
+ 
+/* fix ie6 small issue */
+/* we should always avoid using hack like this */
+/* should put it into separate file : ) */
+*html #nav ul {
+    margin:0 0 0 -2px;
+}

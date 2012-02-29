@@ -1,0 +1,79 @@
+<header>
+<%= javascript_include_tag( 'jquery' )%>
+<script type="text/javascript">
+$(document).ready(function () { 
+     
+    $('#nav li').hover(
+        function () {
+            //show its submenu
+            $('ul', this).slideDown(100);
+ 
+        }, 
+        function () {
+            //hide its submenu
+            $('ul', this).slideUp(100);         
+        }
+    );
+     
+});
+</script>
+	<%= link_to logo, root_path %>
+
+	<ul id="nav">
+		<% if signed_in? %>
+    	<li><%= link_to "Add +", root_path %></li>
+		<% end %>
+	    <li><%= link_to "About ▾", about_path %>
+			<ul>
+	        	<li><%= link_to "Team", about_path %></li>
+	            <li><%= link_to "Contact", contact_path %></li>
+	        </ul>
+			<div class="clear"></div>
+		</li>
+		<% if signed_in? %>
+		<li><%= link_to current_user.name+" ▾", edit_user_path(current_user) %>
+			<ul>
+				<li><%= link_to "Invite Friends", users_path %></li>
+				<li><%= link_to "Find Friends", users_path %></li>
+				<li><%= link_to "Boards", current_user %></li>
+				<li><%= link_to "Pins", current_user %></li>
+				<li><%= link_to "Likes", current_user %></li>
+				<li><%= link_to "Settings", edit_user_path(current_user) %></li>
+				<li><%= link_to "Logout", signout_path %></li>
+			</ul>
+		<div class="clear"></div>
+		</li>
+		<% else %>
+		<li><%= link_to "Login", signin_path %></li>
+		<% end %>
+	<div class="clear"></div>
+  </nav>
+</header>
+
+
+
+
+	<!--       <li><%= link_to "Home", root_path %></li>
+	      <% if signed_in? %>
+	        <li><%= link_to "Profile", current_user %></li>
+	        <li><%= link_to "Users", users_path %></li>
+	        <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+	      <% end %>
+	      	<li><%= link_to "Help", help_path %></li>
+	      <% if signed_in? %>
+	        <li><%= link_to "Sign out", signout_path %></li>
+	      <% else %>
+	        <li><%= link_to "Sign in", signin_path %></li>
+	      <% end %>
+
+
+	<footer>
+	  <nav class="round">
+	    <ul>
+	      <li><%= link_to "About", about_path %></li>
+	      <li><%= link_to "Contact", contact_path %></li>
+	      <li><%= link_to "News", 'http://news.railstutorial.org/' %></li>
+	      <li><%= link_to "Rails Tutorial", 'http://railstutorial.org/' %></li>
+	    </ul>
+	  </nav>
+	</footer> -->

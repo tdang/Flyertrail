@@ -1,0 +1,49 @@
+<%= javascript_include_tag( 'jquery.masonry', 'jquery.infinitescroll.min', 'debug', 'jquery.imagesloaded.min' )%>
+<script type="text/javascript">
+
+$(function(){
+
+	var $container = $('#container');
+	$container.imagesLoaded(function(){
+	  $container.masonry({
+	    itemSelector : '.item',
+	    columnWidth : 240
+	  });
+	});
+
+	$container.infinitescroll({
+		navSelector : 'div.pagination', // selector for the paged navigation
+		nextSelector : 'div.pagination a:first', // selector for the NEXT link (to page 2)
+		itemSelector : '#container div.item', // selector for all items you'll retrieve
+		loading: {
+			finishedMsg: 'No more pages to load.',
+			img: 'http://i.imgur.com/6RMhx.gif'
+		}
+	},
+
+		// trigger Masonry as a callback
+		function( newElements ) {
+			// hide new items while they are loading
+			var $newElems = $( newElements ).css({ opacity: 0 });
+			// ensure that images load before adding to masonry layout
+			$newElems.imagesLoaded(function(){
+				// show elems now they're ready
+				$newElems.animate({ opacity: 1 });
+				$container.masonry( 'appended', $newElems, true );
+			});
+		}
+	);
+});
+
+</script>
+<% if signed_in? %>
+	<%= render 'shared/feed' %>
+<% else %>
+<h1>Flyertrail</h1>
+<p>
+  This is the home page for Flyertrail
+</p>
+
+<%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+
+<% end %>
