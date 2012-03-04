@@ -3,7 +3,6 @@ class CreatePromotions < ActiveRecord::Migration
     create_table :promotions do |t|
       t.string :content
       t.integer :user_id
-
       t.timestamps
     end
     add_index :promotions, [:user_id, :created_at]

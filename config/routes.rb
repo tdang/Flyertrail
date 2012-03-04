@@ -1,7 +1,5 @@
 SampleApp::Application.routes.draw do
 
-  get "promotions/new"
-
   resources :users do
     member do
       get :following, :followers

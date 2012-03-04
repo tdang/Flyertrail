@@ -1,5 +1,5 @@
 <header>
-<%= javascript_include_tag( 'jquery' )%>
+<%= javascript_include_tag( 'jquery', 'jquery.colorbox-min' )%>
 <script type="text/javascript">
 $(document).ready(function () { 
      
@@ -14,14 +14,72 @@ $(document).ready(function () {
             $('ul', this).slideUp(100);         
         }
     );
-     
+   
+// jQuery('a.create').colorbox();
+// 
+// // Using a selector:
+// $("#inline").colorbox({inline:true, href:"#myForm"});
+//  
+// // Using a jQuery object:
+// var $form = $("#myForm");
+// $("#inline").colorbox({inline:true, href:$form
+// 	
+
+$(".inline").colorbox({inline:true, width:"50%"});
+$(".promotionForm").colorbox({inline:true, width:"50%"});
+
+
+$('a[rel="colorbox"]').live("click", function() {
+    $.colorbox({
+        open: true,
+        href: this.href
+    });
+
+    return false;
+});
+
+	//Example of preserving a JavaScript event for inline calls.
+	$("#click").click(function(){
+		$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+		return false;
+	});
 });
 </script>
+
 	<%= link_to logo, root_path %>
 
 	<ul id="nav">
 		<% if signed_in? %>
-    	<li><%= link_to "Add +", root_path %></li>
+		<li><a class='inline' href="#inline_content">Add +</a></li>
+			
+			<!-- This contains the hidden content for inline calls -->
+			<div style='display:none'>
+				<div id='inline_content' style='padding:10px; background:#fff;'>
+				<p><strong>Add a Pin</strong></p>
+				<p><strong> Create a Board</strong></p>
+				<p><a id="click" href="#" style='padding:5px; background:#ccc;'>Click me, it will be preserved!</a></p>
+				<p><strong>If you try to open a new ColorBox while it is already open, it will update itself with the new content.</strong></p>
+				<p>Updating Content Example:<br />
+				<a class="ajax" href="shared/promotion_form" rel="colorbox">Add a Pin</a></p>
+					<div style='display:none'>
+						<div id='promotionForm'>
+						<%= render 'shared/promotion_form'%>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- This contains the hidden content for inline calls -->
+			<!-- <div style='display:none'>
+			<div id='inline_content' style='padding:10px; background:#fff;'>
+			<p><strong>This content comes from a hidden element on this page.</strong></p>
+			<p>The inline option preserves bound JavaScript events and changes, and it puts the content back where it came from when it is closed.</p>
+			<p><a id="click" href="#" style='padding:5px; background:#ccc;'>Click me, it will be preserved!</a></p>
+			<p><strong>If you try to open a new ColorBox while it is already open, it will update itself with the new content.</strong></p>
+			<p>Updating Content Example:<br />
+			<a class="ajax" href="/404.html" rel="colorbox">Click here to load new content</a></p>
+			</div> -->
+		
 		<% end %>
 	    <li><%= link_to "About ▾", about_path %>
 			<ul>

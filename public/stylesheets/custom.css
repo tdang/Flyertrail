@@ -32,9 +32,12 @@ body {
   float: left;
 }
 
+header {
+  text-align: center;
+}
+
 .logo {
 	display: inline-block;
-	margin: 0 auto;
 }
 
 /* Navigation */
@@ -43,10 +46,11 @@ body {
 /* remove the list style */
 #nav {
 	display: inline-block;
-    margin: auto; 
     padding:0; 
     list-style:none;
-	float: right;
+	position: absolute;
+	right: 0px;
+	top: 25px;
 }   
      
     /* make the LI display inline */
@@ -117,3 +121,4 @@ body {
 *html #nav ul {
     margin:0 0 0 -2px;
 }
+
